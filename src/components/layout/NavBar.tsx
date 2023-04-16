@@ -56,10 +56,10 @@ const mockdata = [
 const useStyles = createStyles((theme) => ({
   navbar: {
     width: 300,
-    height: "100vh",
+
     backgroundColor:
       theme.colorScheme === "dark" ? theme.colors.dark[6] : theme.white,
-    paddingBottom: 0,
+
     [theme.fn.smallerThan("sm")]: {
       display: "none",
     },

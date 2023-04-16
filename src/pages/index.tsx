@@ -3,10 +3,24 @@ import Image from "next/image"
 import { Inter } from "next/font/google"
 import styles from "@/styles/Home.module.css"
 import { HeaderTabsColored, Layout, NavbarNested } from ".."
+import { useEffect, useState } from "react"
 
 const inter = Inter({ subsets: ["latin"] })
 
 export default function Home() {
+  const [data, setData] = useState()
+  useEffect(() => {
+    const fetchData = async () => {
+      const result = await fetch(
+        `https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=${process.env.NEXT_PUBLIC_NEWS_API}`,
+      )
+      const jsonData = await result.json()
+      setData(jsonData)
+    }
+    fetchData()
+  }, [])
+  console.log(data)
+
   return (
     <>
       <Head>
@@ -15,9 +29,6 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Layout>
-        <div>saludos</div>
-      </Layout>
     </>
   )
 }
