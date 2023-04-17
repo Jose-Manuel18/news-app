@@ -4,7 +4,7 @@ import { ActionIcon } from "@mantine/core"
 import { motion, AnimatePresence } from "framer-motion"
 import { IconArrowBadgeUp } from "@tabler/icons-react"
 
-export function BackToTop() {
+export const BackToTop = () => {
   const [isVisible, setIsVisible] = useState(false)
 
   const handleScroll = () => {

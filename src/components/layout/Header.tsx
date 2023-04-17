@@ -41,6 +41,7 @@ export function HeaderTabsColored({ tabs }: HeaderTabsProps) {
         <Container>
           <Tabs
             defaultValue={query.category as string}
+            value={query.category as string}
             variant="pills"
             classNames={{
               root: classes.tabs,
