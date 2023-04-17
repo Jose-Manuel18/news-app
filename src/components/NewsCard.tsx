@@ -6,17 +6,12 @@ import { IArticle } from "./types"
 export const NewsCard: React.FC<{ article: IArticle }> = ({ article }) => {
   const { urlToImage, title, description, url, author, publishedAt } = article
   const theme = useMantineTheme()
+
   return (
     <AnimatePresence>
-      <motion.div
-        initial={{ rotateY: 180 }}
-        animate={{ rotateY: 0 }}
-        exit={{ rotateY: 180 }}
-        transition={{ duration: 0.1 }}
-        whileHover={{ scale: 1.005 }}
-      >
+      <motion.div transition={{ duration: 0.1 }} whileHover={{ scale: 1.005 }}>
         <Paper
-          p="md"
+          p="sm"
           shadow="xs"
           style={{
             background:
@@ -46,6 +41,7 @@ export const NewsCard: React.FC<{ article: IArticle }> = ({ article }) => {
           <Text size="xs" color="gray">
             Published at: {new Date(publishedAt).toLocaleDateString()}
           </Text>
+
           <a href={url} target="_blank" rel="noopener noreferrer">
             <Text size="xs" color="blue" style={{ marginTop: "1rem" }}>
               Read more

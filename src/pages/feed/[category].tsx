@@ -1,23 +1,29 @@
 import { NewsCard } from "@/components/NewsCard"
 import { Layout } from "@/components/layout/Layout"
 import { INews } from "@/components/types"
-import { Grid } from "@mantine/core"
+import { Grid, createStyles } from "@mantine/core"
+
 import { GetStaticPaths, GetStaticProps } from "next"
 import Head from "next/head"
-
+import { useMediaQuery } from "@mantine/hooks"
 const categories = [
-  "business",
-  "entertainment",
-  "general",
-  "health",
-  "science",
-  "sports",
-  "technology",
+  "Business",
+  "Entertainment",
+  "General",
+  "Health",
+  "Science",
+  "Sports",
+  "Technology",
 ]
 interface CategoryProps {
   newsData: INews
 }
 export default function Category({ newsData }: CategoryProps) {
+  const large = useMediaQuery("(min-width: 74em)")
+  const small = useMediaQuery("(min-width: 30em)")
+  const medium = useMediaQuery("(min-width: 48em)")
+  const { classes } = useStyles()
+
   return (
     <>
       <Head>
@@ -27,9 +33,12 @@ export default function Category({ newsData }: CategoryProps) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Layout categories={categories}>
-        <Grid columns={5}>
+        <Grid className={classes.grid}>
           {newsData.articles.map((article) => (
-            <Grid.Col key={article.title}>
+            <Grid.Col
+              span={large ? 4 : medium ? 5 : small ? 0 : 0}
+              key={article.title}
+            >
               <NewsCard article={article} />
             </Grid.Col>
           ))}
@@ -60,3 +69,10 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     },
   }
 }
+
+const useStyles = createStyles(() => ({
+  grid: {
+    display: "flex",
+    justifyContent: "center",
+  },
+}))

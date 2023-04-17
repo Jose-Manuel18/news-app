@@ -52,25 +52,6 @@ export const MantineDrawer = ({
           color={theme.colorScheme === "dark" ? "dark.5" : "gray.1"}
         />
         <Text>{items}</Text>
-        {/* <a href="#" className={classes.link}>
-          Home
-        </a>
-        <UnstyledButton className={classes.link} onClick={toggleLinks}>
-          <Center inline>
-            <Box component="span" mr={5}>
-              Features
-            </Box>
-            <IconChevronDown size={16} color={theme.fn.primaryColor()} />
-          </Center>
-        </UnstyledButton>
-        <Collapse in={linksOpened}>Saludos Buenos dias!</Collapse>
-        <a href="#" className={classes.link}>
-          Learn
-        </a>
-        <a href="#" className={classes.link}>
-          Academy
-        </a> */}
-
         <Divider
           my="sm"
           color={theme.colorScheme === "dark" ? "dark.5" : "gray.1"}
