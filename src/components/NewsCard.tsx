@@ -1,5 +1,5 @@
 import React from "react"
-import { Paper, Text, Col, Image, Grid, useMantineTheme } from "@mantine/core"
+import { Paper, Text, Image, useMantineTheme } from "@mantine/core"
 import { motion, AnimatePresence } from "framer-motion"
 import { IArticle } from "./types"
 

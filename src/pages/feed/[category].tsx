@@ -2,11 +2,9 @@ import { NewsCard } from "@/components/NewsCard"
 import { Layout } from "@/components/layout/Layout"
 import { INews } from "@/components/types"
 import { Grid } from "@mantine/core"
-import { useQuery } from "@tanstack/react-query"
 import { GetStaticPaths, GetStaticProps } from "next"
 import Head from "next/head"
-import Link from "next/link"
-import Router, { useRouter } from "next/router"
+
 const categories = [
   "business",
   "entertainment",
@@ -20,10 +18,6 @@ interface CategoryProps {
   newsData: INews
 }
 export default function Category({ newsData }: CategoryProps) {
-  const { query, isReady } = useRouter()
-  const { category } = query
-  console.log(isReady)
-
   return (
     <>
       <Head>
