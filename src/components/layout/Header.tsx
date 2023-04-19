@@ -97,6 +97,7 @@ const useStyles = createStyles((theme) => ({
     backgroundColor: "transparent",
 
     "&:hover": {
+      transform: "scale(1.05)",
       backgroundColor:
         theme.colorScheme === "dark"
           ? theme.colors.dark[5]

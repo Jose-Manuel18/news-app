@@ -7,13 +7,13 @@ import {
   AppShell,
   Navbar,
   Header,
-  Text,
   MediaQuery,
   useMantineTheme,
 } from "@mantine/core"
 import { HeaderTabsColored } from "./Header"
 
 import { BackToTop } from "../BackToTop"
+import { NavigationBar } from "./NavBar"
 
 export function Layout({ children, categories }: LayoutProps) {
   const theme = useMantineTheme()
@@ -32,12 +32,19 @@ export function Layout({ children, categories }: LayoutProps) {
         layout="alt"
         navbar={
           <Navbar
-            p="sm"
             hiddenBreakpoint="sm"
             hidden={true}
             width={{ sm: 200, lg: 300 }}
           >
-            <Text>hey</Text>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                height: "100%",
+              }}
+            >
+              <NavigationBar />
+            </div>
           </Navbar>
         }
         header={

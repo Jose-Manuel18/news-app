@@ -1,13 +1,21 @@
 import React, { useState, useEffect } from "react"
-import { Paper, Text, Image, useMantineTheme } from "@mantine/core"
+import {
+  Paper,
+  Text,
+  Image,
+  useMantineTheme,
+  createStyles,
+} from "@mantine/core"
 import { motion, AnimatePresence } from "framer-motion"
-import { IArticle } from "./types"
+import { IArticle } from "../types"
 import { RootState } from "@/redux/store"
 import { useDispatch, useSelector } from "react-redux"
-import { addArticles, removeArticles } from "../redux/features/articlesSlice"
+import { addArticles, removeArticles } from "../../redux/features/articlesSlice"
 import { IconBadge } from "@tabler/icons-react"
+
 export const NewsCard = ({ article }: { article: IArticle }) => {
   const [isArticleSelected, setIsArticleSelected] = useState(false)
+  const { classes } = useStyles()
   const { colors, colorScheme } = useMantineTheme()
   const { urlToImage, title, description, url, author, publishedAt } = article
   const dispatch = useDispatch()
@@ -95,10 +103,13 @@ export const NewsCard = ({ article }: { article: IArticle }) => {
               }}
             >
               <motion.div
-                whileHover={{ scale: 1.01, cursor: "pointer" }}
+                whileHover={{
+                  scale: 1.05,
+                  cursor: "pointer",
+                }}
                 whileTap={{ scale: 0.9 }}
               >
-                <Text size="xs" style={{ color: "grey" }}>
+                <Text size="sm" className={classes.link}>
                   Read more
                 </Text>
               </motion.div>
@@ -112,3 +123,19 @@ export const NewsCard = ({ article }: { article: IArticle }) => {
     </AnimatePresence>
   )
 }
+const useStyles = createStyles((theme) => ({
+  link: {
+    color:
+      theme.colorScheme === "dark"
+        ? theme.colors.dark[2]
+        : theme.colors.gray[6],
+    fontWeight: 600,
+
+    "&:hover": {
+      color:
+        theme.colorScheme === "dark"
+          ? theme.colors.blue[7]
+          : theme.colors.gray[0],
+    },
+  },
+}))

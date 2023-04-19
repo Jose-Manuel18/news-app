@@ -1,10 +1,11 @@
-import { NewsCard } from "@/components/NewsCard"
 import { Layout } from "@/components/layout/Layout"
-import { INews } from "@/components/types"
-import { Grid, createStyles } from "@mantine/core"
+import { IArticle } from "@/components/types"
 import { GetStaticPaths, GetStaticProps } from "next"
 import Head from "next/head"
-import { useMediaQuery } from "@mantine/hooks"
+import { ArticleList } from "@/components/news_card/ArticleList"
+import { useRouter } from "next/router"
+import { useEffect, useState } from "react"
+import { SkeletonArticleList } from "@/components/SkeletonLoader"
 
 const categories = [
   "Business",
@@ -16,12 +17,29 @@ const categories = [
   "Technology",
 ]
 
-export default function Category({ newsData }: { newsData: INews }) {
-  const large = useMediaQuery("(min-width: 74em)")
-  const small = useMediaQuery("(min-width: 30em)")
-  const medium = useMediaQuery("(min-width: 48em)")
-  const { classes } = useStyles()
+export default function Category({ newsData }: { newsData: IArticle[] }) {
+  const { events } = useRouter()
+  const [isLoading, setIsLoading] = useState(false)
 
+  useEffect(() => {
+    const handleRouteChangeStart = (url: string) => {
+      console.log("Route change starts:", url)
+      setIsLoading(true)
+    }
+
+    const handleRouteChangeComplete = (url: string) => {
+      console.log("Route change completes:", url)
+      setIsLoading(false)
+    }
+
+    events.on("routeChangeStart", handleRouteChangeStart)
+    events.on("routeChangeComplete", handleRouteChangeComplete)
+
+    return () => {
+      events.off("routeChangeStart", handleRouteChangeStart)
+      events.off("routeChangeComplete", handleRouteChangeComplete)
+    }
+  }, [events])
   return (
     <>
       <Head>
@@ -31,16 +49,9 @@ export default function Category({ newsData }: { newsData: INews }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Layout categories={categories}>
-        <Grid className={classes.grid}>
-          {newsData.articles.map((article) => (
-            <Grid.Col
-              span={large ? 4 : medium ? 5 : small ? 0 : 0}
-              key={article.title}
-            >
-              <NewsCard article={article} />
-            </Grid.Col>
-          ))}
-        </Grid>
+        {isLoading && <SkeletonArticleList />}
+
+        <ArticleList newsData={newsData} />
       </Layout>
     </>
   )
@@ -64,14 +75,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   return {
     revalidate: 60,
     props: {
-      newsData: jsonData,
+      newsData: jsonData.articles,
     },
   }
 }
-
-const useStyles = createStyles(() => ({
-  grid: {
-    display: "flex",
-    justifyContent: "center",
-  },
-}))
