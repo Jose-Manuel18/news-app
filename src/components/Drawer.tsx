@@ -21,7 +21,6 @@ interface IMantineDrawer {
 export const MantineDrawer = ({
   opened,
   closed,
-
   categories,
 }: IMantineDrawer) => {
   const { classes, theme } = useStyles()

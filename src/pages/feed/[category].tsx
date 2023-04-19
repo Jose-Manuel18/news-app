@@ -2,10 +2,10 @@ import { NewsCard } from "@/components/NewsCard"
 import { Layout } from "@/components/layout/Layout"
 import { INews } from "@/components/types"
 import { Grid, createStyles } from "@mantine/core"
-
 import { GetStaticPaths, GetStaticProps } from "next"
 import Head from "next/head"
 import { useMediaQuery } from "@mantine/hooks"
+
 const categories = [
   "Business",
   "Entertainment",
@@ -15,10 +15,8 @@ const categories = [
   "Sports",
   "Technology",
 ]
-interface CategoryProps {
-  newsData: INews
-}
-export default function Category({ newsData }: CategoryProps) {
+
+export default function Category({ newsData }: { newsData: INews }) {
   const large = useMediaQuery("(min-width: 74em)")
   const small = useMediaQuery("(min-width: 30em)")
   const medium = useMediaQuery("(min-width: 48em)")
@@ -64,6 +62,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 
   const jsonData = await result.json()
   return {
+    revalidate: 60,
     props: {
       newsData: jsonData,
     },
