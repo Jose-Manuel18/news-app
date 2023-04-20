@@ -8,7 +8,7 @@ const nextConfig = {
     return [
       {
         source: "/",
-        destination: "/feed/general",
+        destination: "/feed/General",
         permanent: true,
       },
     ]

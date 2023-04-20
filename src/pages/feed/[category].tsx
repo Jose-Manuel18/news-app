@@ -49,9 +49,11 @@ export default function Category({ newsData }: { newsData: IArticle[] }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Layout categories={categories}>
-        {isLoading && <SkeletonArticleList />}
-
-        <ArticleList newsData={newsData} />
+        {isLoading ? (
+          <SkeletonArticleList />
+        ) : (
+          <ArticleList newsData={newsData} />
+        )}
       </Layout>
     </>
   )
