@@ -1,18 +1,17 @@
-import { createStyles, Navbar, Title, rem } from "@mantine/core"
+import { createStyles, Navbar, rem } from "@mantine/core"
 
 import Link from "next/link"
 import { useRouter } from "next/router"
-import { useState } from "react"
 
 const linksMockData = [{ name: "Bookmark", url: "/bookmarks" }]
 
 export const NavigationBar = () => {
   const { pathname } = useRouter()
   const { classes, cx } = useStyles()
-  const [activeLink, setActiveLink] = useState("")
 
   const links = linksMockData.map((link) => {
     const isActive = pathname === link.url
+
     return (
       <Link
         className={cx(classes.link, {
@@ -20,9 +19,6 @@ export const NavigationBar = () => {
         })}
         href={link.url}
         key={link.name}
-        onClick={() => {
-          setActiveLink(link.name)
-        }}
       >
         {link.name}
       </Link>
@@ -32,9 +28,6 @@ export const NavigationBar = () => {
   return (
     <Navbar.Section grow className={classes.wrapper}>
       <div className={classes.main}>
-        <Title order={4} className={classes.title}>
-          {activeLink}
-        </Title>
         <Navbar.Section>
           <div className={classes.navBar}>{links}</div>
         </Navbar.Section>
@@ -44,6 +37,7 @@ export const NavigationBar = () => {
 }
 const useStyles = createStyles((theme) => ({
   navBar: {
+    marginTop: rem(64),
     "&[data-active]": {
       backgroundColor:
         theme.colorScheme === "dark" ? theme.colors.blue[7] : theme.white,

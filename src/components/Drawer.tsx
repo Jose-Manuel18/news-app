@@ -2,14 +2,13 @@ import {
   Drawer,
   ScrollArea,
   Divider,
-  Button,
-  Group,
   createStyles,
   rem,
   Text,
 } from "@mantine/core"
 
 import Link from "next/link"
+import { useRouter } from "next/router"
 
 interface IMantineDrawer {
   opened: boolean
@@ -23,17 +22,26 @@ export const MantineDrawer = ({
   closed,
   categories,
 }: IMantineDrawer) => {
-  const { classes, theme } = useStyles()
-  const items = categories.map((tab) => (
-    <Link
-      key={tab}
-      href={`/feed/${tab}`}
-      className={classes.link}
-      onClick={closed}
-    >
-      {tab}
-    </Link>
-  ))
+  const { classes, theme, cx } = useStyles()
+
+  const { query } = useRouter()
+
+  const links = categories.map((link) => {
+    const isActive = query.category === link
+
+    return (
+      <Link
+        className={cx(classes.link, {
+          [classes.linkActive]: isActive,
+        })}
+        href={link}
+        key={link}
+        onClick={closed}
+      >
+        {link}
+      </Link>
+    )
+  })
 
   return (
     <Drawer
@@ -50,16 +58,11 @@ export const MantineDrawer = ({
           my="sm"
           color={theme.colorScheme === "dark" ? "dark.5" : "gray.1"}
         />
-        <Text>{items}</Text>
+        <Text>{links}</Text>
         <Divider
           my="sm"
           color={theme.colorScheme === "dark" ? "dark.5" : "gray.1"}
         />
-
-        <Group position="center" grow pb="xl" px="md">
-          <Button variant="default">Log in</Button>
-          <Button>Sign up</Button>
-        </Group>
       </ScrollArea>
     </Drawer>
   )
@@ -94,5 +97,16 @@ const useStyles = createStyles((theme) => ({
     [theme.fn.largerThan("md")]: {
       display: "none",
     },
+  },
+  linkActive: {
+    backgroundColor: theme.fn.variant({
+      variant: "light",
+      color: theme.primaryColor,
+    }).background,
+
+    borderColor:
+      theme.colorScheme === "dark"
+        ? theme.colors.dark[1]
+        : theme.colors.gray[2],
   },
 }))
