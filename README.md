@@ -1,4 +1,4 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+This is a [Next.js](https://nextjs.org/) project i've built designed to provide you with a fast and smooth experience as you navigate through the latest news stories. It's built using [Next.js](https://nextjs.org/), [Mantine](https://mantine.dev/pages/getting-started/), and [Framer Motion](https://www.framer.com/motion/), which are modern web development technologies that allow for fast performance and beautiful user interface design. The application is hosted on [Vercel](https://vercel.com/docs), a cloud platform for deploying web applications, which ensures that you'll always have access to the latest version of the application.
 
 ## Getting Started
 
@@ -12,15 +12,8 @@ yarn dev
 pnpm dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000/feed/General](http://localhost:3000/feed/General) with your browser to see the result or visit [https://news-app-seven-kappa.vercel.app/feed/General](https://news-app-seven-kappa.vercel.app/feed/General)
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
-
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
-
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 
 ## Learn More
 
