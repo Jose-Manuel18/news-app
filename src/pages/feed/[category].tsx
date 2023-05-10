@@ -18,18 +18,20 @@ const categories = [
 ]
 
 export default function Category({ newsData }: { newsData: IArticle[] }) {
-  const { events } = useRouter()
+  const { events, asPath } = useRouter()
   const [isLoading, setIsLoading] = useState(false)
 
   useEffect(() => {
     const handleRouteChangeStart = (url: string) => {
-      console.log("Route change starts:", url)
-      setIsLoading(true)
+      if (url !== asPath) {
+        setIsLoading(true)
+      }
     }
 
     const handleRouteChangeComplete = (url: string) => {
-      console.log("Route change completes:", url)
-      setIsLoading(false)
+      if (url === asPath) {
+        setIsLoading(false)
+      }
     }
 
     events.on("routeChangeStart", handleRouteChangeStart)
@@ -39,7 +41,7 @@ export default function Category({ newsData }: { newsData: IArticle[] }) {
       events.off("routeChangeStart", handleRouteChangeStart)
       events.off("routeChangeComplete", handleRouteChangeComplete)
     }
-  }, [events])
+  }, [events, asPath])
   return (
     <>
       <Head>
