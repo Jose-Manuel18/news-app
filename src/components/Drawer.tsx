@@ -24,7 +24,7 @@ export const MantineDrawer = ({
 }: IMantineDrawer) => {
   const { classes, theme, cx } = useStyles()
 
-  const { query } = useRouter()
+  const { query, pathname } = useRouter()
 
   const links = categories.map((link) => {
     const isActive = query.category === link
@@ -34,7 +34,7 @@ export const MantineDrawer = ({
         className={cx(classes.link, {
           [classes.linkActive]: isActive,
         })}
-        href={link}
+        href={`/feed/${link}`}
         key={link}
         onClick={closed}
       >
@@ -63,11 +63,45 @@ export const MantineDrawer = ({
           my="sm"
           color={theme.colorScheme === "dark" ? "dark.5" : "gray.1"}
         />
+        <Link
+          href={"/bookmarks"}
+          onClick={closed}
+          className={cx(classes.bookmarks, {
+            [classes.linkActive]: pathname === "/bookmarks",
+          })}
+        >
+          <Text>Bookmarks</Text>
+        </Link>
       </ScrollArea>
     </Drawer>
   )
 }
 const useStyles = createStyles((theme) => ({
+  bookmarks: {
+    display: "flex",
+    alignItems: "center",
+    height: "100%",
+    paddingLeft: theme.spacing.md,
+    paddingRight: theme.spacing.md,
+    textDecoration: "none",
+    color: theme.colorScheme === "dark" ? theme.white : theme.black,
+    fontWeight: 500,
+    fontSize: theme.fontSizes.sm,
+
+    [theme.fn.smallerThan("sm")]: {
+      height: rem(42),
+      display: "flex",
+      alignItems: "center",
+      width: "100%",
+    },
+
+    ...theme.fn.hover({
+      backgroundColor:
+        theme.colorScheme === "dark"
+          ? theme.colors.dark[6]
+          : theme.colors.gray[0],
+    }),
+  },
   link: {
     display: "flex",
     alignItems: "center",

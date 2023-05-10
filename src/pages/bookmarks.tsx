@@ -15,7 +15,7 @@ const categories = [
 ]
 const Bookmarks = () => {
   const savedArticles = useSelector((state: RootState) => state.articles)
-  console.log(savedArticles.length)
+
 
   return (
     <>
