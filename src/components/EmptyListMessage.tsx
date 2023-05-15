@@ -1,5 +1,3 @@
-// components/EmptyListMessage.js
-
 import React from "react"
 import { Text, Paper, Col, Container, Grid } from "@mantine/core"
 import { motion } from "framer-motion"
