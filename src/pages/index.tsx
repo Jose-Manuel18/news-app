@@ -1,18 +1,6 @@
 import Head from "next/head"
 
 export default function Home() {
-  // const [data, setData] = useState()
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     const result = await fetch(
-  //       `https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=${process.env.NEXT_PUBLIC_NEWS_API}`,
-  //     )
-  //     const jsonData = await result.json()
-  //     setData(jsonData)
-  //   }
-  //   fetchData()
-  // }, [])
-
   return (
     <>
       <Head>

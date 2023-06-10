@@ -13,7 +13,7 @@ export const ArticleList = ({ newsData }: { newsData: IArticle[] }) => {
     <Grid className={classes.grid}>
       {newsData.map((article) => (
         <Grid.Col
-          span={large ? 4 : medium ? 5 : small ? 0 : 0}
+          span={large ? 4 : medium ? 4 : small ? 0 : 0}
           key={article.title}
         >
           <NewsCard key={article.title} article={article} />
@@ -24,7 +24,6 @@ export const ArticleList = ({ newsData }: { newsData: IArticle[] }) => {
 }
 const useStyles = createStyles(() => ({
   grid: {
-    display: "flex",
     justifyContent: "center",
   },
 }))
