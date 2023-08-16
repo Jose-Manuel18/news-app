@@ -1,12 +1,12 @@
-import React from "react"
-import { Text, Paper, Col, Container, Grid } from "@mantine/core"
-import { motion } from "framer-motion"
+import React from "react";
+import { Text, Paper, Col, Container, Grid } from "@mantine/core";
+import { motion } from "framer-motion";
 
-export const EmptyListMessage = () => {
+export function EmptyListMessage() {
   const fadeIn = {
     hidden: { opacity: 0, scale: 0.9 },
     visible: { opacity: 1, scale: 1, transition: { duration: 0.5 } },
-  }
+  };
 
   const bounce = {
     initial: { y: -20 },
@@ -18,7 +18,7 @@ export const EmptyListMessage = () => {
         ease: "easeOut",
       },
     },
-  }
+  };
 
   return (
     <Container>
@@ -52,5 +52,5 @@ export const EmptyListMessage = () => {
         </Col>
       </Grid>
     </Container>
-  )
+  );
 }
